@@ -2,6 +2,133 @@
   text-align: center;
 }
 
+.btn {
+  color: #ffffff !important;
+  border-radius: 5px;
+  font-weight: 600;
+  border: 1px solid #00BBD6 !important;
+  padding: 16px;
+}
+
+.btn.active {
+  background: linear-gradient(90deg, #00BBD6, #19A6EE);
+}
+
+.fs-70 {
+  font-size: 70px;
+}
+
+.fs-30 {
+  font-size: 30px;
+}
+
+
+.form-control {
+
+  padding: 0.5rem 1rem !important;
+  color: #ffffff !important;
+  background: linear-gradient(to right, #1C3245, #1D3E53, #1D414F, #1C3D49, #1B3542) !important;
+  border: 1px solid #00BBD6 !important;
+}
+
+.form-control::placeholder {
+  color: #9CA3AF !important;
+}
+
+
+.card,
+.p-card {
+  transition: transform 0.2s;
+  color: #ffffff !important;
+  background: linear-gradient(to right, #1C3245, #1D3E53, #1D414F, #1C3D49, #1B3542) !important;
+}
+
+.p-card .p-card-content {
+  padding: unset !important;
+}
+
+.p-component,
+.p-component {
+  background: linear-gradient(to right, #1C3245, #1D3E53, #1D414F, #1C3D49, #1B3542) !important;
+}
+
+.p-datatable .p-datatable-tbody > tr{
+  background: #1C3245 !important; 
+    color: #ffffff;
+    transition: box-shadow 0.2s;
+}
+.p-datatable.p-datatable-striped .p-datatable-tbody > tr.p-row-odd{
+  background: #223546 !important; 
+}
+.p-datatable .p-paginator-bottom{
+border-width: 0 0 0 0 !important;
+}
+
+ul {
+  margin-bottom: unset !important;
+  padding-left: unset !important;
+}
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight{
+  color: #ffffff !important;
+  background: linear-gradient(to right, #1C3245, #1D3E53, #1D414F, #1C3D49, #1B3542) !important;
+}
+.p-datatable-thead{
+  background: linear-gradient(to right, #1C3245, #1D3E53, #1D414F, #1C3D49, #1B3542) !important;
+}
+
+.p-datatable .p-datatable-thead > tr > th{
+  color: #ffffff !important;
+  background: #1B3542  !important;
+}
+.p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+  background: linear-gradient(90deg, #00BBD6, #19A6EE);
+  color: #ffffff !important;
+  border: 1px solid #00BBD6 !important;
+}
+
+/* Hover effect */
+.p-paginator .p-paginator-pages .p-paginator-page:hover {
+  background: rgba(0, 187, 214, 0.7); /* Semi-transparent version of the highlight */
+  color: #ffffff !important;
+  border: 1px solid #00BBD6 !important;
+}
+
+/* Optional: Additional highlight for active page */
+.p-paginator .p-paginator-pages .p-paginator-page.p-highlight:hover {
+  background: linear-gradient(90deg, #19A6EE, #00BBD6);
+  color: #ffffff !important;
+  border: 1px solid #00BBD6 !important;
+}
+
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item:not(.p-highlight):not(.p-disabled).p-focus{
+  background: linear-gradient(90deg, #19A6EE, #00BBD6);
+  color: #ffffff !important;
+  border: 1px solid #00BBD6 !important; 
+}
+.card:hover {
+  transform: translateY(-5px);
+}
+
+@media (max-width: 576px) {
+  .card-body {
+    padding: 1rem;
+  }
+
+  .chart-container {
+    height: 300px;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 992px) {
+  .chart-container {
+    height: 350px;
+  }
+}
+
+
+
+
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -32,6 +159,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }

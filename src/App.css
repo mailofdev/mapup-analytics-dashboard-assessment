@@ -105,6 +105,18 @@ ul {
   color: #ffffff !important;
   border: 1px solid #00BBD6 !important; 
 }
+.p-datatable .p-sortable-column .p-sortable-column-icon{
+  color: #ffffff !important;
+}
+
+.p-datatable .p-datatable-header {
+  background: linear-gradient(to right, #1C3245, #1D3E53, #1D414F, #1C3D49, #1B3542) !important;
+  color: #ffffff !important;
+  /* border: 1px solid #e5e7eb; */
+  border-width: 1px 0 1px 0;
+  padding: 1rem 1rem;
+  font-weight: 700;
+}
 .card:hover {
   transform: translateY(-5px);
 }

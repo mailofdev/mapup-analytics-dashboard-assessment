@@ -12,6 +12,7 @@ import 'primereact/resources/themes/lara-light-indigo/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 const App = () => {
   const [data, setData] = useState([]);
@@ -212,14 +213,14 @@ const App = () => {
             ))}
           </div>
 
-          <div className="row g-4 my-4 justify-content-center gap-2">
+          <div className="row g-2 my-4 justify-content-center">
             {[
               { label: 'Total Vehicles', value: analytics.totalVehicles, icon: 'bi bi-car-front text-white' },
-              { label: 'Avg Range', value: `${analytics.averageRange} mi`, icon: 'bi bi-battery-charging text-success' },
-              { label: 'Cities', value: analytics.uniqueCities, icon: 'bi bi-geo-alt text-danger' },
-              { label: 'Makes', value: analytics.uniqueMakes, icon: 'bi bi-building text-info' },
-              { label: 'Models', value: analytics.uniqueModels, icon: 'bi bi-car-front-fill text-warning' },
-              // { label: 'Median Range', value: `${analytics.medianRange} mi`, icon: 'bi bi-battery-full text-secondary' },
+              { label: 'Avg Range', value: `${analytics.averageRange || 0} mi`, icon: 'bi bi-battery-charging text-success' },
+              { label: 'Cities', value: analytics.uniqueCities || 0, icon: 'bi bi-geo-alt text-danger' },
+              { label: 'Makes', value: analytics.uniqueMakes || 0, icon: 'bi bi-building text-info' },
+              { label: 'Models', value: analytics.uniqueModels || 0, icon: 'bi bi-car-front-fill text-warning' },
+              { label: 'Median Range', value: `${analytics.medianRange || 0} mi`, icon: 'bi bi-battery-full text-secondary' },
             ].map((stat, idx) => (
               <div key={idx} className="col-6 col-md-4 col-lg-2">
                 <Card className="h-100 d-flex align-items-center justify-content-center">
@@ -312,23 +313,34 @@ const App = () => {
           )}
 
           {activeView === 'table' && (
-            <DataTable
-              value={filteredData}
-              paginator
-              rows={rows}
-              first={first}
-              onPage={onPage}
-              className="p-datatable-striped custom-datatable" // Add custom-datatable class here
-              responsiveLayout="scroll"
-              rowsPerPageOptions={[10, 25, 50, 100]}
-            >
-              <Column field="Make" header="Make"  />
-              <Column field="Model" header="Model"  />
-              <Column field="Model Year" header="Year"  />
-              <Column field="Electric Vehicle Type" header="Type"  />
-              <Column field="Range" header="Range (mi)"  />
-              <Column field="City" header="City"  />
-            </DataTable>
+        <DataTable
+        value={filteredData}
+        paginator
+        rows={rows}
+        first={first}
+        onPage={onPage}
+        className="p-datatable-striped custom-datatable"
+        responsiveLayout="scroll"
+        rowsPerPageOptions={[10, 25, 50, 100]}
+        style={{ width: '100%', tableLayout: 'auto' }}
+        header={`Total Records: ${filteredData.length}`} // Display total records in the header
+      >
+        <Column field="VIN (1-10)" header="VIN" sortable headerStyle={{ minWidth: '150px' }} />
+        <Column field="Make" header="Make" sortable headerStyle={{ minWidth: '100px' }} />
+        <Column field="Model" header="Model" sortable headerStyle={{ minWidth: '100px' }} />
+        <Column field="Model Year" header="Year" sortable headerStyle={{ minWidth: '100px' }} />
+        <Column field="Electric Vehicle Type" header="Type" sortable headerStyle={{ minWidth: '250px' }} />
+        <Column field="Clean Alternative Fuel Vehicle (CAFV) Eligibility" header="CAFV Eligibility" sortable headerStyle={{ minWidth: '250px' }} />
+        <Column field="Electric Range" header="Electric Range (miles)" sortable headerStyle={{ minWidth: '250px' }} />
+        <Column field="Base MSRP" header="Base MSRP" sortable headerStyle={{ minWidth: '150px' }} />
+        <Column field="County" header="County" sortable headerStyle={{ minWidth: '100px' }} />
+        <Column field="City" header="City" sortable headerStyle={{ minWidth: '100px' }} />
+        <Column field="Legislative District" header="Legislative District" sortable headerStyle={{ minWidth: '250px' }} />
+        <Column field="DOL Vehicle ID" header="DOL Vehicle ID" sortable headerStyle={{ minWidth: '250px' }} />
+        <Column field="Electric Utility" header="Electric Utility" sortable headerStyle={{ minWidth: '200px' }} />
+      </DataTable>
+      
+
           )}
         </div>
       </div>

@@ -13,6 +13,8 @@ import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import logo from './images/mapup-logo.png'
+import { Col, Row } from 'react-bootstrap';
 
 const App = () => {
   const [data, setData] = useState([]);
@@ -190,9 +192,23 @@ const App = () => {
     <div className="container-fluid p-4">
       <div className="row my-4">
         <div className="col-12">
-          <h1 className="fs-70 text-center">Electric Vehicle Dashboard</h1>
-
-          <div className="row g-3 my-4">
+          <div className="container-fluid fixed-top p-2 bg-header ">
+            <Row className="d-flex align-items-center">
+              <Col xs="auto">
+                <img
+                  src={logo}
+                  alt="Admin Portal Logo"
+                  width="120"
+                  height="30"
+                  className="d-inline-block align-top mx-2"
+                />
+              </Col>
+              <Col>
+                <div className="fs-30 text-center">Electric Vehicle Dashboard</div>
+              </Col>
+            </Row>
+          </div>
+          <div className="row g-3 my-4 mt-5">
             <div className="col-12 col-md">
               <InputText
                 className="form-control"
@@ -313,33 +329,33 @@ const App = () => {
           )}
 
           {activeView === 'table' && (
-        <DataTable
-        value={filteredData}
-        paginator
-        rows={rows}
-        first={first}
-        onPage={onPage}
-        className="p-datatable-striped custom-datatable"
-        responsiveLayout="scroll"
-        rowsPerPageOptions={[10, 25, 50, 100]}
-        style={{ width: '100%', tableLayout: 'auto' }}
-        header={`Total Records: ${filteredData.length}`} // Display total records in the header
-      >
-        <Column field="VIN (1-10)" header="VIN" sortable headerStyle={{ minWidth: '150px' }} />
-        <Column field="Make" header="Make" sortable headerStyle={{ minWidth: '100px' }} />
-        <Column field="Model" header="Model" sortable headerStyle={{ minWidth: '100px' }} />
-        <Column field="Model Year" header="Year" sortable headerStyle={{ minWidth: '100px' }} />
-        <Column field="Electric Vehicle Type" header="Type" sortable headerStyle={{ minWidth: '250px' }} />
-        <Column field="Clean Alternative Fuel Vehicle (CAFV) Eligibility" header="CAFV Eligibility" sortable headerStyle={{ minWidth: '250px' }} />
-        <Column field="Electric Range" header="Electric Range (miles)" sortable headerStyle={{ minWidth: '250px' }} />
-        <Column field="Base MSRP" header="Base MSRP" sortable headerStyle={{ minWidth: '150px' }} />
-        <Column field="County" header="County" sortable headerStyle={{ minWidth: '100px' }} />
-        <Column field="City" header="City" sortable headerStyle={{ minWidth: '100px' }} />
-        <Column field="Legislative District" header="Legislative District" sortable headerStyle={{ minWidth: '250px' }} />
-        <Column field="DOL Vehicle ID" header="DOL Vehicle ID" sortable headerStyle={{ minWidth: '250px' }} />
-        <Column field="Electric Utility" header="Electric Utility" sortable headerStyle={{ minWidth: '200px' }} />
-      </DataTable>
-      
+            <DataTable
+              value={filteredData}
+              paginator
+              rows={rows}
+              first={first}
+              onPage={onPage}
+              className="p-datatable-striped custom-datatable"
+              responsiveLayout="scroll"
+              rowsPerPageOptions={[10, 25, 50, 100]}
+              style={{ width: '100%', tableLayout: 'auto' }}
+              header={`Total Records: ${filteredData.length}`} // Display total records in the header
+            >
+              <Column field="VIN (1-10)" header="VIN" sortable headerStyle={{ minWidth: '150px' }} />
+              <Column field="Make" header="Make" sortable headerStyle={{ minWidth: '100px' }} />
+              <Column field="Model" header="Model" sortable headerStyle={{ minWidth: '100px' }} />
+              <Column field="Model Year" header="Year" sortable headerStyle={{ minWidth: '100px' }} />
+              <Column field="Electric Vehicle Type" header="Electric Vehicle Type" sortable headerStyle={{ minWidth: '250px' }} />
+              <Column field="Clean Alternative Fuel Vehicle (CAFV) Eligibility" header="CAFV Eligibility" sortable headerStyle={{ minWidth: '250px' }} />
+              <Column field="Electric Range" header="Electric Range (miles)" sortable headerStyle={{ minWidth: '250px' }} />
+              <Column field="Base MSRP" header="Base MSRP" sortable headerStyle={{ minWidth: '150px' }} />
+              <Column field="County" header="County" sortable headerStyle={{ minWidth: '100px' }} />
+              <Column field="City" header="City" sortable headerStyle={{ minWidth: '100px' }} />
+              <Column field="Legislative District" header="Legislative District" sortable headerStyle={{ minWidth: '250px' }} />
+              <Column field="DOL Vehicle ID" header="DOL Vehicle ID" sortable headerStyle={{ minWidth: '250px' }} />
+              <Column field="Electric Utility" header="Electric Utility" sortable headerStyle={{ minWidth: '200px' }} />
+            </DataTable>
+
 
           )}
         </div>

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Papa from 'papaparse';
 import { Chart } from 'primereact/chart';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -7,7 +6,6 @@ import { Card } from 'primereact/card';
 import { InputText } from 'primereact/inputtext';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
-import Data from './data/Electric_Vehicle_Population_Data.csv';
 import 'primereact/resources/themes/lara-light-indigo/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
@@ -15,10 +13,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import logo from './images/mapup-logo.png'
 import { Col, Row } from 'react-bootstrap';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchVehicleData, selectAllData, selectFilteredData, setFilteredData } from './redux/vehicleDataSlice';
 
 const App = () => {
-  const [data, setData] = useState([]);
-  const [filteredData, setFilteredData] = useState([]);
+
+  const dispatch = useDispatch();
+  const data = useSelector(selectAllData);
+  const filteredData = useSelector(selectFilteredData);
+
   const [searchTerm, setSearchTerm] = useState('');
   const [filters, setFilters] = useState({
     make: '',
@@ -28,7 +31,9 @@ const App = () => {
   });
   const [first, setFirst] = useState(0);
   const [rows, setRows] = useState(10);
-  const [activeView, setActiveView] = useState('charts'); // Control for the active view
+  const [activeView, setActiveView] = useState('charts');
+
+
 
   const onPage = (e) => {
     setFirst(e.first); // Set the index of the first item
@@ -37,21 +42,8 @@ const App = () => {
 
 
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch(Data);
-      const reader = response.body.getReader();
-      const result = await reader.read();
-      const decoder = new TextDecoder("utf-8");
-      const csvData = decoder.decode(result.value);
-      const parsedData = Papa.parse(csvData, {
-        header: true,
-        skipEmptyLines: true
-      }).data;
-      setData(parsedData);
-      setFilteredData(parsedData);
-    };
-    fetchData();
-  }, []);
+    dispatch(fetchVehicleData());
+  }, [dispatch]);
 
   useEffect(() => {
     const filtered = data.filter(item => {
@@ -68,9 +60,9 @@ const App = () => {
       return matchesSearch && matchesFilters;
     });
 
-    setFilteredData(filtered);
+    dispatch(setFilteredData(filtered));
     setFirst(0);
-  }, [searchTerm, filters, data]);
+  }, [searchTerm, filters, data, dispatch]);
 
   const getVehicleTypeData = () => {
     const distribution = {};
@@ -339,7 +331,7 @@ const App = () => {
               responsiveLayout="scroll"
               rowsPerPageOptions={[10, 25, 50, 100]}
               style={{ width: '100%', tableLayout: 'auto' }}
-              header={`Total Records: ${filteredData.length}`} // Display total records in the header
+              header={`Total Records: ${filteredData.length}`}
             >
               <Column field="VIN (1-10)" header="VIN" sortable headerStyle={{ minWidth: '150px' }} />
               <Column field="Make" header="Make" sortable headerStyle={{ minWidth: '100px' }} />

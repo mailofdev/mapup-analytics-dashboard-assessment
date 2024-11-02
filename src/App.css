@@ -94,6 +94,7 @@
 
 /* PrimeReact Components */
 .p-component {
+  font-family: 'Eudoxus Sans', sans-serif !important;
   background: linear-gradient(to right, #1C3245, #1D3E53, #1D414F, #1C3D49, #1B3542) !important;
 }
 
